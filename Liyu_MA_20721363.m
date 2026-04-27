@@ -30,7 +30,6 @@ for i = 1:10
     pause(0.5);                      % Wait 0.5 seconds
 end
 %% TASK 1 - READ TEMPERATURE DATA, PLOT, AND WRITE TO A LOG FILE [20 MARKS]
-%% TASK 1 - READ TEMPERATURE DATA, PLOT, AND WRITE TO A LOG FILE [20 MARKS]
 % Task 1a) Temperature sensor connected to analog pin A0
 % MCP 9700A sensor specifications:
 %   V0 = 0.5V (zero-degree voltage)
