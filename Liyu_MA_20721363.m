@@ -29,6 +29,7 @@ for i = 1:10
     writeDigitalPin(a, 'D10', 0);  % Turn LED OFF
     pause(0.5);                      % Wait 0.5 seconds
 end
+
 %% TASK 1 - READ TEMPERATURE DATA, PLOT, AND WRITE TO A LOG FILE [20 MARKS]
 % Task 1a) Temperature sensor connected to analog pin A0
 % MCP 9700A sensor specifications:
@@ -96,13 +97,33 @@ disp(msg6)
 msg7=sprintf('Data logging terminated\n');
 disp(msg7)
 
+% Task 1e) Write formatted data to a log file
+fid = fopen('capsule_temperature.txt', 'w');  % Open file with write permission
 
+fprintf(fid, 'Data logging initiated - %s\n', datestr(now, 'dd/mm/yyyy'));
+fprintf(fid, 'Location - Nottingham\n\n');
 
+for min_idx = 0:10
+    sample_idx = min_idx * 60 + 1;
+    if sample_idx > length(temperature_data)
+        sample_idx = length(temperature_data);
+    end
+    fprintf(fid, 'Minute \t%d\tTemperature \t%.2f °C\n\n', min_idx, temperature_data(sample_idx));
+end
 
+fprintf(fid, 'Max temp\t%.2f °C\n', max_temp);
+fprintf(fid, 'Min temp\t%.2f °C\n', min_temp);
+fprintf(fid, 'Average temp\t%.2f °C\n\n', avg_temp);
+fprintf(fid, 'Data logging terminated\n');
 
+fclose(fid);  % Close the log file
 
-
-
+% Verify log file was written correctly by reading it back
+fid_check = fopen('capsule_temperature.txt', 'r');
+file_content = fread(fid_check, '*char')';  % Read entire file as string
+disp('--- Verifying log file content ---');
+disp(file_content);
+fclose(fid_check);
 
 %% TASK 2 - LED TEMPERATURE MONITORING DEVICE IMPLEMENTATION [25 MARKS]
 
