@@ -1,0 +1,8 @@
+function temp_prediction(a, pred_duration)
+% TEMP_PREDICTION Temperature rate monitoring and 5-minute prediction
+%   Reads MCP 9700A sensor on A0, calculates rate of change using
+%   30-sample moving average (linear regression), predicts temp in 5 min.
+%   Green (D10): stable rate within +/-4 C/min
+%   Red (D4): rate > +4 C/min (heating too fast)
+%   Yellow (D7): rate < -4 C/min (cooling too fast)
+% Stop with Ctrl+C
