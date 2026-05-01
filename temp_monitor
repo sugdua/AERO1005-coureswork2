@@ -1,10 +1,18 @@
-function temp_monitor(a, monitor_duration)
-% TEMP_MONITOR Real-time temperature monitoring with LED indicators
-%   Reads MCP 9700A sensor on A0, displays live plot, controls LEDs:
-%   Green (D10): constant ON when 18-24 °C (comfort range)
-%   Yellow (D7): blinks 0.5s when below 18 °C
-%   Red (D4): blinks 0.25s when above 24 °C
-%   Stop with Ctrl+C
+function temp_prediction(a, pred_duration)
+% TEMP_PREDICTION Temperature rate monitoring and 5-minute prediction
+%   Reads MCP 9700A sensor on A0, calculates rate of change using
+%   30-sample moving average (linear regression), predicts temp in 5 min.
+%   Green (D10): stable rate within +/-4 C/min
+%   Red (D4): rate > +4 C/min (heating too fast)
+%   Yellow (D7): rate < -4 C/min (cooling too fast)
+%   Stops automatically after pred_duration seconds (default 300 s)
+%   Usage: temp_prediction(a)        -> runs for 300 s
+%          temp_prediction(a, 180)   -> runs for 180 s
+
+% Set default duration
+    if nargin < 2
+        pred_duration = 30;   %Can change the duration here
+    end
 V0 = 0.5;
 TC = 0.01;
 T_low = 18;
