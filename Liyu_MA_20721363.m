@@ -126,7 +126,11 @@ disp(file_content);
 fclose(fid_check);
 
 %% TASK 2 - LED TEMPERATURE MONITORING DEVICE IMPLEMENTATION [25 MARKS]
-
+% Calls temp_monitor.m (separate file)
+% Green (D10): constant ON when 18-24 C
+% Yellow (D7): blinks 0.5s when < 18 C
+% Red (D4): blinks 0.25s when > 24 C
+temp_monitor(a);
 
 
 
