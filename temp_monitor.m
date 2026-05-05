@@ -10,7 +10,7 @@ function temp_monitor(a, monitor_duration)
 
 % Set default duration
     if nargin < 2
-        monitor_duration = 30;   %Can change the duration here
+        monitor_duration = 60;   %Can change the duration here
     end
 
 V0 = 0.5;
