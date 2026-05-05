@@ -11,7 +11,7 @@ function temp_prediction(a, pred_duration)
 
 % Set default duration
     if nargin < 2
-        pred_duration = 30;   %Can change the duration here
+        pred_duration = 60;   %Can change the duration here
     end
 V0 = 0.5;
 TC = 0.01;
