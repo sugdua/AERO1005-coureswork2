@@ -90,3 +90,4 @@ end
     writeDigitalPin(a, redPin, 0);
     disp('Task 3 prediction finished.');
 end
+end
