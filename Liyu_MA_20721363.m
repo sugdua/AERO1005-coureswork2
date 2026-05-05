@@ -4,20 +4,8 @@
 
 %% PRELIMINARY TASK - ARDUINO AND GIT INSTALLATION [5 MARKS]
 clear a
-% Auto-detect Arduino port (works on both Mac and Windows)
-ports = serialportlist("available");
-% Filter: on Mac look for usbserial, on Windows look for COM
-arduino_port = "";
-for p = ports
-    if contains(p, "usbserial") || contains(p, "COM")
-        arduino_port = p;
-        break;
-    end
-end
-if arduino_port == ""
-    error('No Arduino found. Check USB connection.');
-end
-a = arduino(arduino_port, 'Uno');
+
+a = arduino('COM5', 'Uno');
 
 % Test single LED on digital pin D10
 writeDigitalPin(a, 'D10', 1);
